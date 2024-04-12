@@ -7,3 +7,4 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Security Hotspot", "S4792:Configuring loggers is security-sensitive", Justification = "Is already been controlled in the code")]
 [assembly: SuppressMessage("Security Hotspot", "S4507:Make sure this debug feature is deactivated before delivering the code in production.", Justification = "Is already been controlled in the code")]
+[assembly: SuppressMessage("Design", "CA1024:Usar propiedades donde corresponda", Justification = "<pendiente>", Scope = "member", Target = "~M:GtMotive.Estimate.Microservice.Host.Controllers.VehicleController.GetAll~System.Collections.Generic.IList{GtMotive.Estimate.Microservice.Api.Models.Host.VehicleDto}")]

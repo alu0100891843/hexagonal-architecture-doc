@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.Logic;
-using GtMotive.Estimate.Microservice.Api.Models.Infrastructure;
+using GtMotive.Estimate.Microservice.Host.Models.Vehicle;
+using GtMotive.Estimate.Microservice.Host.Models.Vehicle.Mapper;
+using GtMotive.Generic.Microservice.Utils.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GtMotive.Estimate.Microservice.Host.Controllers
@@ -18,15 +20,18 @@ namespace GtMotive.Estimate.Microservice.Host.Controllers
         }
 
         [HttpGet("getAll")]
-        public async Task<List<VehicleRd>> GetAll()
+        public async Task<Collection<VehicleDto>> GetAll()
         {
-            return await vehicleLogic.GetAll();
+            var vehicleList = await vehicleLogic.GetAll();
+            return MapperUtils.MapList(vehicleList, VehicleDtoMapper.MapToDto);
         }
 
         [HttpPost("create")]
-        public async Task<VehicleRd> Create([FromBody] VehicleRd vehicle)
+        public async Task<VehicleDto> Create([FromBody] VehicleDto vehicle)
         {
-            return await vehicleLogic.Create(vehicle);
+            var vehicleApi = VehicleDtoMapper.MapToApi(vehicle);
+            var result = await vehicleLogic.Create(vehicleApi);
+            return VehicleDtoMapper.MapToDto(result);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
     [Document(StorageType = StorageType.Json, Prefixes = new[] { "Rent" })]
     public class RentRd
     {
-        public RentRd(string id, string vehicleId, string clientId, DateTimeOffset startDate, DateTimeOffset finishDate)
+        public RentRd(string id, string vehicleId, string clientId, DateTime startDate, DateTime finishDate)
         {
             Id = id;
             VehicleId = vehicleId;
@@ -26,9 +26,9 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
         public string ClientId { get; set; }
 
         [Indexed]
-        public DateTimeOffset StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Indexed]
-        public DateTimeOffset FinishDate { get; set; }
+        public DateTime FinishDate { get; set; }
     }
 }

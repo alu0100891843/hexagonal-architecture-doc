@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-      <RuleTargetType>Full</RuleTargetType>
-      <Nullable>annotations</Nullable>
   </PropertyGroup>
 
 </Project>

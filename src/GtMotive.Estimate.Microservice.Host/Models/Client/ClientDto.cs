@@ -1,4 +1,4 @@
-﻿namespace GtMotive.Estimate.Microservice.Api.Models.Host
+﻿namespace GtMotive.Estimate.Microservice.Host.Models
 {
     public class ClientDto
     {

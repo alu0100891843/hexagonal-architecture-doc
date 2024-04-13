@@ -6,7 +6,7 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
     [Document(StorageType = StorageType.Json, Prefixes = new[] { "Vehicle" })]
     public class VehicleRd
     {
-        public VehicleRd(string id, string brand, string model, string plate, DateTimeOffset? manufacturedDate)
+        public VehicleRd(string id, string brand, string model, string plate, DateTime manufacturedDate)
         {
             Id = id;
             Brand = brand;
@@ -29,6 +29,6 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
         public string Plate { get; set; }
 
         [Searchable]
-        public DateTimeOffset? ManufacturedDate { get; set; }
+        public DateTime ManufacturedDate { get; set; }
     }
 }

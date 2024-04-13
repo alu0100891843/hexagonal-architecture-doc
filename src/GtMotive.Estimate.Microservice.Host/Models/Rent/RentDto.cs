@@ -1,10 +1,11 @@
 ﻿using System;
+using GtMotive.Estimate.Microservice.Host.Models.Vehicle;
 
-namespace GtMotive.Estimate.Microservice.Api.Models.Host
+namespace GtMotive.Estimate.Microservice.Host.Models.Rent
 {
     public class RentDto
     {
-        public RentDto(string id, VehicleDto vehicle, ClientDto client, DateTimeOffset startDate, DateTimeOffset returnDate)
+        public RentDto(string id, VehicleDto vehicle, ClientDto client, DateTime startDate, DateTime returnDate)
         {
             Id = id;
             Vehicle = vehicle;
@@ -19,8 +20,8 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Host
 
         public ClientDto Client { get; set; }
 
-        public DateTimeOffset StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
-        public DateTimeOffset ReturnDate { get; set; }
+        public DateTime ReturnDate { get; set; }
     }
 }

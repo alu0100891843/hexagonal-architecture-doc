@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace GtMotive.Estimate.Microservice.Api.Models.Host
+namespace GtMotive.Estimate.Microservice.Host.Models.Vehicle
 {
     public class VehicleDto
     {
-        public VehicleDto(string id, string brand, string model, string plate, DateTimeOffset? manufacturedDate)
+        public VehicleDto(string id, string brand, string model, string plate, DateTime manufacturedDate)
         {
             Id = id;
             Brand = brand;
@@ -21,6 +21,6 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Host
 
         public string Plate { get; set; }
 
-        public DateTimeOffset? ManufacturedDate { get; set; }
+        public DateTime ManufacturedDate { get; set; }
     }
 }

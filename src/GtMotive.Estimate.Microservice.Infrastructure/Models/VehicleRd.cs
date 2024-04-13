@@ -3,7 +3,7 @@ using Redis.OM.Modeling;
 
 namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
 {
-    [Document(StorageType = StorageType.Json, IndexName = "vehiclerd-idx", Prefixes = new[] { "Vehicle" })]
+    [Document(StorageType = StorageType.Json, Prefixes = new[] { "Vehicle" })]
     public class VehicleRd
     {
         public VehicleRd(string id, string brand, string model, string plate, DateTimeOffset? manufacturedDate)

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.Models.Infrastructure;
-using GtMotive.Estimate.Microservice.Infrastructure.Services.Redis;
+using GtMotive.Estimate.Microservice.Infrastructure.Services.Redis.Impl;
 
 namespace GtMotive.Estimate.Microservice.Api.Logic
 {

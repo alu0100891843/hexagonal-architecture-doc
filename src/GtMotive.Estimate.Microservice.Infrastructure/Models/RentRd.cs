@@ -6,11 +6,11 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
     [Document(StorageType = StorageType.Json, Prefixes = new[] { "Rent" })]
     public class RentRd
     {
-        public RentRd(string id, string vehicle, string client, DateTimeOffset startDate, DateTimeOffset finishDate)
+        public RentRd(string id, string vehicleId, string clientId, DateTimeOffset startDate, DateTimeOffset finishDate)
         {
             Id = id;
-            Vehicle = vehicle;
-            Client = client;
+            VehicleId = vehicleId;
+            ClientId = clientId;
             StartDate = startDate;
             FinishDate = finishDate;
         }
@@ -20,10 +20,10 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
         public string Id { get; set; }
 
         [Indexed]
-        public string Vehicle { get; set; }
+        public string VehicleId { get; set; }
 
-        [Indexed(CascadeDepth = 1)]
-        public string Client { get; set; }
+        [Indexed]
+        public string ClientId { get; set; }
 
         [Indexed]
         public DateTimeOffset StartDate { get; set; }

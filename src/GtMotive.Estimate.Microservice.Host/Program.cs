@@ -10,6 +10,7 @@ using GtMotive.Estimate.Microservice.Host.DependencyInjection;
 using GtMotive.Estimate.Microservice.Infrastructure;
 using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Settings;
 using GtMotive.Estimate.Microservice.Infrastructure.Services.Redis;
+using GtMotive.Estimate.Microservice.Infrastructure.Services.Redis.Impl;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
@@ -61,6 +62,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton(new RedisConnectionProvider(builder.Configuration["REDIS_CONN_STR"]));
 builder.Services.AddScoped<VehicleLogic>();
 builder.Services.AddScoped<VehicleService>();
+builder.Services.AddSingleton<RedisContext>();
 
 // SERVICIOS PRUEBA
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");

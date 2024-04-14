@@ -1,8 +1,7 @@
 ﻿using GtMotive.Estimate.Microservice.Api.Models.Vehicle.ValueObjects.Vehicle;
 using GtMotive.Estimate.Microservice.Domain.Models.Vehicle;
-using GtMotive.Estimate.Microservice.Host.Models.Vehicle;
 using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Complex;
-using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Primitives;
+using GtMotive.Generic.Microservice.Models.ValueObjects.Complex;
 
 namespace GtMotive.Estimate.Microservice.Host.Models.Vehicle.Mapper
 {
@@ -13,10 +12,10 @@ namespace GtMotive.Estimate.Microservice.Host.Models.Vehicle.Mapper
             return vehicleApi == null
                 ? null
                 : new VehicleDto(
-                vehicleApi.Id?.Value?.ToString(),
-                vehicleApi.Brand?.Value,
-                vehicleApi.Model?.Value,
-                vehicleApi.Plate?.Value,
+                vehicleApi.Id.Value,
+                vehicleApi.Brand.Value,
+                vehicleApi.Model.Value,
+                vehicleApi.Plate.Value,
                 vehicleApi.ManufacturedDate.Value);
         }
 
@@ -26,8 +25,8 @@ namespace GtMotive.Estimate.Microservice.Host.Models.Vehicle.Mapper
                 ? null
                 : new VehicleApi(
                 new UuidValueObject(vehicleDto.Id ?? UuidValueObject.GenerateUUID()),
-                new StringValueObject(vehicleDto.Brand),
-                new StringValueObject(vehicleDto.Model),
+                new CapitalizeWordValueObject(vehicleDto.Brand),
+                new CapitalizeWordValueObject(vehicleDto.Model),
                 new PlateValueObject(vehicleDto.Plate),
                 new ManufacturedDateValueObject(vehicleDto.ManufacturedDate));
         }

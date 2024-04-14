@@ -62,6 +62,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton(new RedisConnectionProvider(builder.Configuration["REDIS_CONN_STR"]));
 builder.Services.AddScoped<VehicleLogic>();
 builder.Services.AddScoped<VehicleService>();
+builder.Services.AddScoped<ClientLogic>();
+builder.Services.AddScoped<ClientService>();
 builder.Services.AddSingleton<RedisContext>();
 
 // SERVICIOS PRUEBA

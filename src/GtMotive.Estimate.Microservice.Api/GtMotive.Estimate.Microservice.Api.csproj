@@ -19,8 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <PackageReference Include="MediatR" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
 
@@ -30,6 +28,10 @@
     <ProjectReference Include="..\GtMotive.Estimate.Microservice.ApplicationCore\GtMotive.Estimate.Microservice.ApplicationCore.csproj" />
     <ProjectReference Include="..\GtMotive.Estimate.Microservice.Infrastructure\GtMotive.Estimate.Microservice.Infrastructure.csproj" />
     <ProjectReference Include="..\GtMotive.Generic.Microservice.Api.Models\GtMotive.Generic.Microservice.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Rent\" />
   </ItemGroup>
 
 </Project>

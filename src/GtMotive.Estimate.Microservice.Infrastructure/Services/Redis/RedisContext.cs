@@ -9,10 +9,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Services.Redis
     {
         public RedisContext(RedisConnectionProvider redisCnn)
         {
-            if (redisCnn == null)
-            {
-                throw new ArgumentNullException(nameof(redisCnn));
-            }
+            RedisCnn = redisCnn ?? throw new ArgumentNullException(nameof(redisCnn));
 
             redisCnn.Connection.CreateIndex(typeof(VehicleRd));
             VehicleContext = redisCnn.RedisCollection<VehicleRd>() as RedisCollection<VehicleRd>;
@@ -23,6 +20,8 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Services.Redis
             redisCnn.Connection.CreateIndex(typeof(ClientRd));
             ClientContext = redisCnn.RedisCollection<ClientRd>() as RedisCollection<ClientRd>;
         }
+
+        public RedisConnectionProvider RedisCnn { get; }
 
         public RedisCollection<VehicleRd> VehicleContext { get; }
 

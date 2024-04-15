@@ -56,5 +56,10 @@ namespace GtMotive.Estimate.Microservice.Api.Logic
                 throw new DomainException("Ha ocurrido un error al crear el vehículo");
             }
         }
+
+        public async Task DeleteOldVehicles()
+        {
+            await vehicleService.EvalOldVehicles();
+        }
     }
 }

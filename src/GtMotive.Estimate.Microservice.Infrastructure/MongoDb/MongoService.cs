@@ -13,6 +13,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb
 
             Db = MongoClient.GetDatabase(options.Value.MongoDbDatabaseName);
 
+            OldVehicleCollection = Db.GetCollection<OldVehicleDb>("old_vehicles");
             VehicleCollection = Db.GetCollection<VehicleDb>("vehicles");
             ClientCollection = Db.GetCollection<ClientDb>("clients");
             RentCollection = Db.GetCollection<RentDb>("rents");
@@ -23,6 +24,8 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb
         public IMongoDatabase Db { get; }
 
         public IMongoCollection<VehicleDb> VehicleCollection { get; }
+
+        public IMongoCollection<OldVehicleDb> OldVehicleCollection { get; }
 
         public IMongoCollection<ClientDb> ClientCollection { get; }
 

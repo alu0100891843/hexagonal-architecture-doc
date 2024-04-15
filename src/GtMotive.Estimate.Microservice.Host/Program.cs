@@ -4,12 +4,11 @@ using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using GtMotive.Estimate.Microservice.Api;
-using GtMotive.Estimate.Microservice.Api.Logic;
+using GtMotive.Estimate.Microservice.Extensions.Hosting;
 using GtMotive.Estimate.Microservice.Host.Configuration;
 using GtMotive.Estimate.Microservice.Host.DependencyInjection;
+using GtMotive.Estimate.Microservice.Host.Utils.Schedulers;
 using GtMotive.Estimate.Microservice.Infrastructure;
-using GtMotive.Estimate.Microservice.Infrastructure.MongoDb;
-using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Impl;
 using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Settings;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.ApplicationInsights.Extensibility;
@@ -58,14 +57,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // SERVICIOS PRUEBA
-builder.Services.AddScoped<VehicleLogic>();
-builder.Services.AddScoped<VehicleService>();
-builder.Services.AddScoped<ClientLogic>();
-builder.Services.AddScoped<ClientService>();
-builder.Services.AddScoped<RentLogic>();
-builder.Services.AddScoped<RentService>();
-
-builder.Services.AddSingleton<MongoService>();
+builder.Services.AddScopes();
 
 // SERVICIOS PRUEBA
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
@@ -106,6 +98,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddSwagger(appSettings, builder.Configuration);
 
 var app = builder.Build();
+
+MoveOldVehiclesScheduler.Start(app.Services);
 
 // Logging configuration.
 Log.Logger = builder.Environment.IsDevelopment() ?

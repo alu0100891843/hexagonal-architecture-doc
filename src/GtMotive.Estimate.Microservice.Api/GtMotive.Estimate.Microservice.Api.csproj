@@ -30,8 +30,4 @@
     <ProjectReference Include="..\GtMotive.Generic.Microservice.Api.Models\GtMotive.Generic.Microservice.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Rent\" />
-  </ItemGroup>
-
 </Project>

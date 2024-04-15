@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.Logic;
 using GtMotive.Estimate.Microservice.Host.Models;
 using GtMotive.Estimate.Microservice.Host.Models.Client.Mapper;
+using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Complex;
 using GtMotive.Generic.Microservice.Utils.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,14 +31,14 @@ namespace GtMotive.Estimate.Microservice.Host.Controllers
         public async Task<ClientDto> Create([FromBody] ClientDto client)
         {
             var clientApi = ClientDtoMapper.MapToApi(client);
-            var result = await clientLogic.Create(clientApi);
+            var result = await clientLogic.Insert(clientApi);
             return ClientDtoMapper.MapToDto(result);
         }
 
         [HttpDelete("delete")]
         public async Task Delete([FromQuery] string id)
         {
-            await clientLogic.Delete(id);
+            await clientLogic.Delete(new UuidValueObject(id));
         }
     }
 }

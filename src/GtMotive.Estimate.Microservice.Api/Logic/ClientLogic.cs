@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.Models.Client;
 using GtMotive.Estimate.Microservice.Api.Models.Client.Mapper;
-using GtMotive.Estimate.Microservice.Infrastructure.Services.Redis.Impl;
-using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Complex;
+using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Impl;
 using GtMotive.Generic.Microservice.Utils.Mappers;
+using MongoDB.Driver;
 
 namespace GtMotive.Estimate.Microservice.Api.Logic
 {
@@ -18,27 +17,30 @@ namespace GtMotive.Estimate.Microservice.Api.Logic
             this.clientService = clientService;
         }
 
-        public async Task<ClientApi> Create(ClientApi client)
-        {
-            if (client == null)
-            {
-                throw new ArgumentException("La información del vehículo está vacía");
-            }
-
-            var result = await clientService.Create(ClientRdMapper.MapToRd(client));
-            return ClientRdMapper.MapToApi(result);
-        }
-
-        public async Task Delete(string id)
-        {
-            UuidValueObject uuid = new(id);
-            await clientService.Delete(uuid.Value);
-        }
-
         public async Task<Collection<ClientApi>> GetAll()
         {
-            var result = await clientService.GetAll();
-            return MapperUtils.MapList(result, ClientRdMapper.MapToApi);
+            try
+            {
+                var result = await clientService.GetAllAsync();
+                return MapperUtils.MapList(result, ClientDbMapper.MapToApi);
+            }
+            catch (MongoException)
+            {
+                throw new MongoException("Ha ocurrido un error al obtener los clientes");
+            }
+        }
+
+        public async Task<ClientApi> Insert(ClientApi client)
+        {
+            try
+            {
+                await clientService.InsertAsync(ClientDbMapper.MapToDb(client));
+                return client;
+            }
+            catch (MongoException)
+            {
+                throw new MongoException("Ha ocurrido un error al crear el cliente");
+            }
         }
     }
 }

@@ -1,27 +1,26 @@
 ﻿using System;
-using GtMotive.Estimate.Microservice.Host.Models.Vehicle;
 
 namespace GtMotive.Estimate.Microservice.Host.Models.Rent
 {
     public class RentDto
     {
-        public RentDto(string id, VehicleDto vehicle, ClientDto client, DateTime startDate, DateTime returnDate)
+        public RentDto(string id, string vehicleId, string clientId, DateTime startDate, DateTime? finishDate)
         {
             Id = id;
-            Vehicle = vehicle;
-            Client = client;
+            VehicleId = vehicleId;
+            ClientId = clientId;
             StartDate = startDate;
-            ReturnDate = returnDate;
+            FinishDate = finishDate;
         }
 
         public string Id { get; set; }
 
-        public VehicleDto Vehicle { get; set; }
+        public string VehicleId { get; set; }
 
-        public ClientDto Client { get; set; }
+        public string ClientId { get; set; }
 
         public DateTime StartDate { get; set; }
 
-        public DateTime ReturnDate { get; set; }
+        public DateTime? FinishDate { get; set; }
     }
 }

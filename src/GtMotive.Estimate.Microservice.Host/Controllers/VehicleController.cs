@@ -30,7 +30,7 @@ namespace GtMotive.Estimate.Microservice.Host.Controllers
         public async Task<VehicleDto> Create([FromBody] VehicleDto vehicle)
         {
             var vehicleApi = VehicleDtoMapper.MapToApi(vehicle);
-            var result = await vehicleLogic.Create(vehicleApi);
+            var result = await vehicleLogic.Insert(vehicleApi);
             return VehicleDtoMapper.MapToDto(result);
         }
     }

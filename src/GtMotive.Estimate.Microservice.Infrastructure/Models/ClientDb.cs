@@ -1,11 +1,10 @@
-﻿using Redis.OM.Modeling;
+﻿using MongoDB.Bson.Serialization.Attributes;
 
 namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
 {
-    [Document(StorageType = StorageType.Json, Prefixes = new[] { "Client" })]
-    public class ClientRd
+    public class ClientDb
     {
-        public ClientRd(string id, string name, string lastName, string nif)
+        public ClientDb(string id, string name, string lastName, string nif)
         {
             Id = id;
             Name = name;
@@ -13,17 +12,13 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
             NIF = nif;
         }
 
-        [RedisIdField]
-        [Indexed]
+        [BsonId]
         public string Id { get; set; }
 
-        [Searchable]
         public string Name { get; set; }
 
-        [Searchable]
         public string LastName { get; set; }
 
-        [Searchable]
         public string NIF { get; set; }
     }
 }

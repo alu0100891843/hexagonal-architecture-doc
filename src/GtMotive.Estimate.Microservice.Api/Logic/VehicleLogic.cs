@@ -2,9 +2,12 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.Models.Vehicle.Mapper;
+using GtMotive.Estimate.Microservice.Api.Models.Vehicle.ValueObjects.Vehicle;
 using GtMotive.Estimate.Microservice.Domain.Models.Vehicle;
-using GtMotive.Estimate.Microservice.Infrastructure.Services.Redis.Impl;
+using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Impl;
+using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Complex;
 using GtMotive.Generic.Microservice.Utils.Mappers;
+using MongoDB.Driver;
 
 namespace GtMotive.Estimate.Microservice.Api.Logic
 {
@@ -17,21 +20,36 @@ namespace GtMotive.Estimate.Microservice.Api.Logic
             this.vehicleService = vehicleService;
         }
 
-        public async Task<VehicleApi> Create(VehicleApi vehicle)
-        {
-            if (vehicle == null)
-            {
-                throw new ArgumentException("La información del vehículo está vacía");
-            }
-
-            var result = await vehicleService.Create(VehicleRdMapper.MapToRd(vehicle));
-            return VehicleRdMapper.MapToApi(result);
-        }
-
         public async Task<Collection<VehicleApi>> GetAll()
         {
-            var result = await vehicleService.GetAll();
-            return MapperUtils.MapList(result, VehicleRdMapper.MapToApi);
+            try
+            {
+                var result = await vehicleService.GetAllAsync();
+                return MapperUtils.MapList(result, VehicleDbMapper.MapToApi);
+            }
+            catch (MongoException)
+            {
+                throw new MongoException("Ha ocurrido un error al obtener los clientes");
+            }
+        }
+
+        public async Task<VehicleApi> GetByPlate(PlateValueObject plate)
+        {
+            var result = await vehicleService.GetByPlateAsync(plate?.Value);
+            return VehicleDbMapper.MapToApi(result);
+        }
+
+        public async Task<VehicleApi> Insert(VehicleApi vehicle)
+        {
+            try
+            {
+                await vehicleService.InsertAsync(VehicleDbMapper.MapToDb(vehicle));
+                return vehicle;
+            }
+            catch (MongoException)
+            {
+                throw new MongoException("Ha ocurrido un error al crear el vehículo");
+            }
         }
     }
 }

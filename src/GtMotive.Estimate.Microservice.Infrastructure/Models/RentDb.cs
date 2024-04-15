@@ -1,12 +1,11 @@
 ﻿using System;
-using Redis.OM.Modeling;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
 {
-    [Document(StorageType = StorageType.Json, Prefixes = new[] { "Rent" })]
-    public class RentRd
+    public class RentDb
     {
-        public RentRd(string id, string vehicleId, string clientId, DateTime startDate, DateTime finishDate)
+        public RentDb(string id, string vehicleId, string clientId, DateTime startDate, DateTime? finishDate)
         {
             Id = id;
             VehicleId = vehicleId;
@@ -15,20 +14,15 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
             FinishDate = finishDate;
         }
 
-        [RedisIdField]
-        [Indexed]
+        [BsonId]
         public string Id { get; set; }
 
-        [Indexed]
         public string VehicleId { get; set; }
 
-        [Indexed]
         public string ClientId { get; set; }
 
-        [Indexed]
         public DateTime StartDate { get; set; }
 
-        [Indexed]
-        public DateTime FinishDate { get; set; }
+        public DateTime? FinishDate { get; set; }
     }
 }

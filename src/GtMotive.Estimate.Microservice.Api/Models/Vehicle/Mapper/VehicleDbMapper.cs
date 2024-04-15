@@ -6,13 +6,13 @@ using GtMotive.Generic.Microservice.Models.ValueObjects.Complex;
 
 namespace GtMotive.Estimate.Microservice.Api.Models.Vehicle.Mapper
 {
-    public static class VehicleRdMapper
+    public static class VehicleDbMapper
     {
-        public static VehicleRd MapToRd(VehicleApi vehicleApi)
+        public static VehicleDb MapToDb(VehicleApi vehicleApi)
         {
             return vehicleApi == null
                 ? null
-                : new VehicleRd(
+                : new VehicleDb(
                 vehicleApi.Id.Value,
                 vehicleApi.Brand.Value,
                 vehicleApi.Model.Value,
@@ -20,16 +20,16 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Vehicle.Mapper
                 vehicleApi.ManufacturedDate.Value);
         }
 
-        public static VehicleApi MapToApi(VehicleRd vehicleRd)
+        public static VehicleApi MapToApi(VehicleDb vehicleDb)
         {
-            return vehicleRd == null
+            return vehicleDb == null
                 ? null
                 : new VehicleApi(
-                new UuidValueObject(vehicleRd.Id),
-                new CapitalizeWordValueObject(vehicleRd.Brand),
-                new CapitalizeWordValueObject(vehicleRd.Model),
-                new PlateValueObject(vehicleRd.Plate),
-                new ManufacturedDateValueObject(vehicleRd.ManufacturedDate));
+                new UuidValueObject(vehicleDb.Id),
+                new CapitalizeWordValueObject(vehicleDb.Brand),
+                new CapitalizeWordValueObject(vehicleDb.Model),
+                new PlateValueObject(vehicleDb.Plate),
+                new ManufacturedDateValueObject(vehicleDb.ManufacturedDate));
         }
     }
 }

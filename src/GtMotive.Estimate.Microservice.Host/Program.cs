@@ -8,9 +8,9 @@ using GtMotive.Estimate.Microservice.Api.Logic;
 using GtMotive.Estimate.Microservice.Host.Configuration;
 using GtMotive.Estimate.Microservice.Host.DependencyInjection;
 using GtMotive.Estimate.Microservice.Infrastructure;
+using GtMotive.Estimate.Microservice.Infrastructure.MongoDb;
+using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Impl;
 using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Settings;
-using GtMotive.Estimate.Microservice.Infrastructure.Services.Redis;
-using GtMotive.Estimate.Microservice.Infrastructure.Services.Redis.Impl;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
@@ -19,7 +19,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Redis.OM;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -59,12 +58,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // SERVICIOS PRUEBA
-builder.Services.AddSingleton(new RedisConnectionProvider(builder.Configuration["REDIS_CONN_STR"]));
 builder.Services.AddScoped<VehicleLogic>();
 builder.Services.AddScoped<VehicleService>();
 builder.Services.AddScoped<ClientLogic>();
 builder.Services.AddScoped<ClientService>();
-builder.Services.AddSingleton<RedisContext>();
+builder.Services.AddScoped<RentLogic>();
+builder.Services.AddScoped<RentService>();
+
+builder.Services.AddSingleton<MongoService>();
 
 // SERVICIOS PRUEBA
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
@@ -83,7 +84,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
                                ForwardedHeaders.XForwardedProto;
 
     // Only loopback proxies are allowed by default.
-    // Clear that restriction because forwarders are enabled by explicit
+    // Clear that restriction because forwaDbers are enabled by explicit
     // configuration.
     options.KnownNetworks.Clear();
     options.KnownProxies.Clear();

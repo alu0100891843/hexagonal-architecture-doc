@@ -5,25 +5,25 @@ using GtMotive.Generic.Microservice.Models.ValueObjects.Complex;
 
 namespace GtMotive.Estimate.Microservice.Api.Models.Client.Mapper
 {
-    public static class ClientRdMapper
+    public static class ClientDbMapper
     {
-        public static ClientApi MapToApi(ClientRd clientRd)
+        public static ClientApi MapToApi(ClientDb clientDb)
         {
-            return clientRd == null
+            return clientDb == null
                 ? null
                 : new ClientApi(
-                new UuidValueObject(clientRd.Id),
-                new CapitalizeWordValueObject(clientRd.Name),
-                new CapitalizeWordValueObject(clientRd.LastName),
-                new NifValueObject(clientRd.NIF));
+                new UuidValueObject(clientDb.Id),
+                new CapitalizeWordValueObject(clientDb.Name),
+                new CapitalizeWordValueObject(clientDb.LastName),
+                new NifValueObject(clientDb.NIF));
         }
 
-        public static ClientRd MapToRd(ClientApi clientApi)
+        public static ClientDb MapToDb(ClientApi clientApi)
         {
             return clientApi == null
                 ? null
-                : new ClientRd(
-                clientApi.Id?.Value.ToString(),
+                : new ClientDb(
+                clientApi.Id?.Value,
                 clientApi.Name?.Value,
                 clientApi.LastName?.Value,
                 clientApi.NIF?.Value);

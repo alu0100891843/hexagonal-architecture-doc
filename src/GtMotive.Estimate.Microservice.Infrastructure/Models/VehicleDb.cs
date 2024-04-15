@@ -1,5 +1,6 @@
 ﻿using System;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 
 namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
 {
@@ -24,5 +25,13 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
         public string Plate { get; set; }
 
         public DateTime ManufacturedDate { get; set; }
+
+        internal static void ConfigureRestrictions(IMongoCollection<VehicleDb> vehicleCollection)
+        {
+            var plateIndexKeys = Builders<VehicleDb>.IndexKeys.Ascending(x => x.Plate);
+            var plateIndexOptions = new CreateIndexOptions { Unique = true };
+            var plateIndexModel = new CreateIndexModel<VehicleDb>(plateIndexKeys, plateIndexOptions);
+            vehicleCollection.Indexes.CreateOne(plateIndexModel);
+        }
     }
 }

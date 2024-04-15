@@ -17,6 +17,10 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb
             VehicleCollection = Db.GetCollection<VehicleDb>("vehicles");
             ClientCollection = Db.GetCollection<ClientDb>("clients");
             RentCollection = Db.GetCollection<RentDb>("rents");
+
+            OldVehicleDb.ConfigureRestrictions(OldVehicleCollection);
+            VehicleDb.ConfigureRestrictions(VehicleCollection);
+            ClientDb.ConfigureRestrictions(ClientCollection);
         }
 
         public MongoClient MongoClient { get; }

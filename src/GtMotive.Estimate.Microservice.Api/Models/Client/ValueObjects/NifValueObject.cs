@@ -1,6 +1,6 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Primitives;
+﻿using System.Text.RegularExpressions;
+using GtMotive.Generic.Microservice.Domain;
+using GtMotive.Generic.Microservice.Models.ValueObjects.Primitives;
 
 namespace GtMotive.Estimate.Microservice.Api.Models.Client.ValueObjects
 {
@@ -16,7 +16,7 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Client.ValueObjects
         {
             if (!ValidaDbNI(value) && !ValidarNIE(value) && !ValidarPassport(value))
             {
-                throw new ArgumentException("El NIF, NIE o Pasaporte no es válido");
+                throw new DomainException("El NIF, NIE o Pasaporte no es válido");
             }
         }
 

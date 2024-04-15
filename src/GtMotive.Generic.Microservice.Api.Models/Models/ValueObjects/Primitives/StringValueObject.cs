@@ -1,4 +1,4 @@
-﻿namespace GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Primitives
+﻿namespace GtMotive.Generic.Microservice.Models.ValueObjects.Primitives
 {
     public class StringValueObject
     {

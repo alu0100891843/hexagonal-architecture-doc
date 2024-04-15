@@ -1,7 +1,8 @@
 ﻿using System;
-using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Primitives;
+using GtMotive.Generic.Microservice.Domain;
+using GtMotive.Generic.Microservice.Models.ValueObjects.Primitives;
 
-namespace GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Complex
+namespace GtMotive.Generic.Microservice.Models.ValueObjects.Complex
 {
     public class UuidValueObject : StringValueObject
     {
@@ -10,7 +11,7 @@ namespace GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Complex
         {
             if (!Guid.TryParse(value, out _))
             {
-                throw new ArgumentException("La cadena de caracteres no es un UUID válido");
+                throw new DomainException("La cadena de caracteres no es un UUID válido");
             }
         }
 

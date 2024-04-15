@@ -1,6 +1,5 @@
 ﻿using GtMotive.Estimate.Microservice.Api.Models.Vehicle.ValueObjects.Vehicle;
 using GtMotive.Estimate.Microservice.Domain.Models.Vehicle;
-using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Complex;
 using GtMotive.Generic.Microservice.Models.ValueObjects.Complex;
 
 namespace GtMotive.Estimate.Microservice.Host.Models.Vehicle.Mapper

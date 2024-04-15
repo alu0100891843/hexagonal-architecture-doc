@@ -23,10 +23,10 @@ namespace GtMotive.Estimate.Microservice.Host.Controllers
         }
 
         [HttpGet("getAll")]
-        public async Task<Collection<RentDto>> GetAll()
+        public async Task<ActionResult<Collection<RentDto>>> GetAll()
         {
             var rentList = await rentLogic.GetAll();
-            return MapperUtils.MapList(rentList, RentDtoMapper.MapToDto);
+            return Ok(MapperUtils.MapList(rentList, RentDtoMapper.MapToDto));
         }
 
         [HttpPost("create")]

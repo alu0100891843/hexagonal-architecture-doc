@@ -1,5 +1,6 @@
 ﻿using System;
-using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Primitives;
+using GtMotive.Generic.Microservice.Domain;
+using GtMotive.Generic.Microservice.Models.ValueObjects.Primitives;
 
 namespace GtMotive.Estimate.Microservice.Api.Models.Vehicle.ValueObjects.Vehicle
 {
@@ -10,14 +11,14 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Vehicle.ValueObjects.Vehicle
         {
             if (value > DateTime.Now)
             {
-                throw new ArgumentException("La fecha de fabricación no puede ser futura.", nameof(value));
+                throw new DomainException("La fecha de fabricación no puede ser futura");
             }
 
             var fiveYearsAgo = DateTime.Now.AddYears(-5);
 
             if (value < fiveYearsAgo)
             {
-                throw new ArgumentException("Han pasado más de 5 años desde la fecha de fabricación de este vehículo");
+                throw new DomainException("Han pasado más de 5 años desde la fecha de fabricación de este vehículo");
             }
         }
     }

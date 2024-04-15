@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Primitives;
+using GtMotive.Generic.Microservice.Models.ValueObjects.Primitives;
 
-namespace GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Complex
+namespace GtMotive.Generic.Microservice.Models.ValueObjects.Complex
 {
     public abstract class RegexStringValueObject : StringValueObject
     {

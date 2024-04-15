@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Primitives;
+using GtMotive.Generic.Microservice.Models.ValueObjects.Primitives;
 
 namespace GtMotive.Generic.Microservice.Models.ValueObjects.Complex
 {

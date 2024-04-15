@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.Models.Vehicle.Mapper;
 using GtMotive.Estimate.Microservice.Api.Models.Vehicle.ValueObjects.Vehicle;
 using GtMotive.Estimate.Microservice.Domain.Models.Vehicle;
 using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Impl;
-using GtMotive.Generic.Microservice.Domain.Models.ValueObjects.Complex;
+using GtMotive.Generic.Microservice.Domain;
 using GtMotive.Generic.Microservice.Utils.Mappers;
-using MongoDB.Driver;
 
 namespace GtMotive.Estimate.Microservice.Api.Logic
 {
@@ -27,16 +25,23 @@ namespace GtMotive.Estimate.Microservice.Api.Logic
                 var result = await vehicleService.GetAllAsync();
                 return MapperUtils.MapList(result, VehicleDbMapper.MapToApi);
             }
-            catch (MongoException)
+            catch (DomainException)
             {
-                throw new MongoException("Ha ocurrido un error al obtener los clientes");
+                throw new DomainException("Ha ocurrido un error al obtener el listado de vehículos");
             }
         }
 
         public async Task<VehicleApi> GetByPlate(PlateValueObject plate)
         {
-            var result = await vehicleService.GetByPlateAsync(plate?.Value);
-            return VehicleDbMapper.MapToApi(result);
+            try
+            {
+                var result = await vehicleService.GetByPlateAsync(plate?.Value);
+                return VehicleDbMapper.MapToApi(result);
+            }
+            catch (DomainException)
+            {
+                throw new DomainException("Ha ocurrido un error al obtener el vehículo por matrícula");
+            }
         }
 
         public async Task<VehicleApi> Insert(VehicleApi vehicle)
@@ -46,9 +51,9 @@ namespace GtMotive.Estimate.Microservice.Api.Logic
                 await vehicleService.InsertAsync(VehicleDbMapper.MapToDb(vehicle));
                 return vehicle;
             }
-            catch (MongoException)
+            catch (DomainException)
             {
-                throw new MongoException("Ha ocurrido un error al crear el vehículo");
+                throw new DomainException("Ha ocurrido un error al crear el vehículo");
             }
         }
     }

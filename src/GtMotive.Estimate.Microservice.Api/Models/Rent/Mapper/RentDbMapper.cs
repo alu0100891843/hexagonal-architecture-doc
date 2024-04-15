@@ -1,4 +1,4 @@
-﻿using GtMotive.Estimate.Microservice.Api.Models.Infrastructure;
+﻿using GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb;
 using GtMotive.Generic.Microservice.Models.ValueObjects.Complex;
 using GtMotive.Generic.Microservice.Models.ValueObjects.Primitives;
 

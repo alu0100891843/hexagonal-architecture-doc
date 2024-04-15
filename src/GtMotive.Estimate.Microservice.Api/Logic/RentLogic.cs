@@ -2,10 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.Models.Client.ValueObjects;
-using GtMotive.Estimate.Microservice.Api.Models.Infrastructure;
 using GtMotive.Estimate.Microservice.Api.Models.Rent;
 using GtMotive.Estimate.Microservice.Api.Models.Rent.Mapper;
 using GtMotive.Estimate.Microservice.Api.Models.Vehicle.ValueObjects.Vehicle;
+using GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb;
 using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Impl;
 using GtMotive.Generic.Microservice.Domain;
 using GtMotive.Generic.Microservice.Models.ValueObjects.Complex;

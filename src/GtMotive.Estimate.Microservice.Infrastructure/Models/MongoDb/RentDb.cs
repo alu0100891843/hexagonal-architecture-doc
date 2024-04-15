@@ -1,9 +1,10 @@
 ﻿using System;
+using GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb.Parent;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
+namespace GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb
 {
-    public class RentDb
+    public class RentDb : MongoEntity
     {
         public RentDb(string id, string vehicleId, string clientId, DateTime startDate, DateTime? finishDate)
         {

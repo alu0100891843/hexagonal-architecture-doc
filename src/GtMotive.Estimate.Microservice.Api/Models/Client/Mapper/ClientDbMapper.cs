@@ -1,5 +1,5 @@
 ﻿using GtMotive.Estimate.Microservice.Api.Models.Client.ValueObjects;
-using GtMotive.Estimate.Microservice.Api.Models.Infrastructure;
+using GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb;
 using GtMotive.Generic.Microservice.Models.ValueObjects.Complex;
 
 namespace GtMotive.Estimate.Microservice.Api.Models.Client.Mapper

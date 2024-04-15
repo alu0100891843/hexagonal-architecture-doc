@@ -1,4 +1,4 @@
-﻿using GtMotive.Estimate.Microservice.Api.Models.Infrastructure;
+﻿using GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;

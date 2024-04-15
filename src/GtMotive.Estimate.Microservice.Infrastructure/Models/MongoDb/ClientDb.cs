@@ -1,9 +1,10 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb.Parent;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 
-namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
+namespace GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb
 {
-    public class ClientDb
+    public class ClientDb : MongoEntity
     {
         public ClientDb(string id, string name, string lastName, string nif)
         {

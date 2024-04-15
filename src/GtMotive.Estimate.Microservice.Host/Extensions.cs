@@ -18,6 +18,9 @@ namespace GtMotive.Estimate.Microservice.Extensions.Hosting
             services.AddScoped<RentLogic>();
             services.AddScoped<RentService>();
 
+            services.AddScoped<OldVehicleLogic>();
+            services.AddScoped<OldVehicleService>();
+
             services.AddSingleton<MongoService>();
         }
     }

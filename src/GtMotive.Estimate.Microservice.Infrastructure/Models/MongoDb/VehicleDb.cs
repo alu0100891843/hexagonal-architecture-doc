@@ -1,10 +1,11 @@
 ﻿using System;
+using GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb.Parent;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 
-namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
+namespace GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb
 {
-    public class VehicleDb
+    public class VehicleDb : MongoEntity
     {
         public VehicleDb(string id, string brand, string model, string plate, DateTime manufacturedDate)
         {

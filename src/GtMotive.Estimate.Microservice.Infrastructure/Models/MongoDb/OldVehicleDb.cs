@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Driver;
 
-namespace GtMotive.Estimate.Microservice.Api.Models.Infrastructure
+namespace GtMotive.Estimate.Microservice.Infrastructure.Models.MongoDb
 {
     public class OldVehicleDb : VehicleDb
     {

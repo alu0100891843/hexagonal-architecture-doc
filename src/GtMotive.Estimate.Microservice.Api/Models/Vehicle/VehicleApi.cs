@@ -14,6 +14,10 @@ namespace GtMotive.Estimate.Microservice.Domain.Models.Vehicle
             ManufacturedDate = manufacturedDate;
         }
 
+        protected VehicleApi()
+        {
+        }
+
         public UuidValueObject Id { get; set; }
 
         public CapitalizeWordValueObject Brand { get; set; }

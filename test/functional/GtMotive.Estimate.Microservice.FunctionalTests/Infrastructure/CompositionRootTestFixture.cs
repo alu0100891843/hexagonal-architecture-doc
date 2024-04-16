@@ -2,7 +2,12 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api;
+using GtMotive.Estimate.Microservice.Api.Logic;
+using GtMotive.Estimate.Microservice.Host.Controllers;
 using GtMotive.Estimate.Microservice.Infrastructure;
+using GtMotive.Estimate.Microservice.Infrastructure.MongoDb;
+using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Impl;
+using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Settings;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -92,11 +97,16 @@ namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
             _serviceProvider.Dispose();
         }
 
-        private static void ConfigureServices(IServiceCollection services)
+        private void ConfigureServices(IServiceCollection services)
         {
             services.AddApiDependencies();
             services.AddLogging();
             services.AddBaseInfrastructure(true);
+            services.AddTransient<VehicleController>();
+            services.AddTransient<VehicleLogic>();
+            services.AddTransient<VehicleService>();
+            services.AddTransient<MongoService>();
+            services.Configure<MongoDbSettings>(Configuration.GetSection("MongoDb"));
         }
     }
 }

@@ -1,11 +1,14 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using Acheve.AspNetCore.TestHost.Security;
 using Acheve.TestHost;
 using GtMotive.Estimate.Microservice.Api;
+using GtMotive.Estimate.Microservice.Host.Models;
 using GtMotive.Estimate.Microservice.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -34,6 +37,16 @@ namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGet("/Client/getAll", async context =>
+                {
+                    // Simulación de la respuesta de la API
+                    var clientes = new List<ClientDto>
+                    {
+                        new ClientDto("1", "Cliente1", "Apellido1", "44112233A"),
+                        new ClientDto("2", "Cliente2", "Apellido2", "44112233B")
+                    };
+                    await context.Response.WriteAsJsonAsync(clientes);
+                });
             });
         }
 

@@ -15,7 +15,6 @@ namespace GtMotive.Estimate.Microservice.UnitTests.Specs
             Assert.Equal(value, nif.Value);
         }
 
-        // Creating a new instance of NifValueObject with a value that is one character shorter than the minimum length for a Passport should raise an ArgumentException.
         [Fact]
         public void TestNifValueObjectInvalidValue()
         {

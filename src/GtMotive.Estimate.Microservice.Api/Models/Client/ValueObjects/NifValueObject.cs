@@ -14,13 +14,13 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Client.ValueObjects
 
         private static void Validate(string value)
         {
-            if (!ValidaDbNI(value) && !ValidarNIE(value) && !ValidarPassport(value))
+            if (!ValidarDNI(value) && !ValidarNIE(value) && !ValidarPassport(value))
             {
                 throw new DomainException("El NIF, NIE o Pasaporte no es válido");
             }
         }
 
-        private static bool ValidaDbNI(string value)
+        private static bool ValidarDNI(string value)
         {
             Regex regex = new(@"^\d{8}[A-Z]$");
             return regex.IsMatch(value);

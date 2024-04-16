@@ -17,9 +17,7 @@ namespace GtMotive.Estimate.Microservice.Api.Models.Vehicle
             Price = price;
         }
 
-#pragma warning disable CA1061 // No ocultar métodos de clases base
         public new DateValueObject ManufacturedDate { get; set; }
-#pragma warning restore CA1061 // No ocultar métodos de clases base
 
         public PositiveDoubleValueObject Price { get; set; }
     }

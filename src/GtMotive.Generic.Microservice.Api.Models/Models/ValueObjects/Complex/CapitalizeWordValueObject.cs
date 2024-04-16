@@ -14,10 +14,10 @@ namespace GtMotive.Generic.Microservice.Models.ValueObjects.Complex
                 throw new ArgumentException("El valor no puede estar vacío o contener solo espacios en blanco.", nameof(value));
             }
 
-            Value = CapitalizeWoDbs(value);
+            Value = CapitalizeWords(value);
         }
 
-        private static string CapitalizeWoDbs(string value)
+        private static string CapitalizeWords(string value)
         {
             var cultureInfo = new CultureInfo("es-ES", false);
             var textInfo = cultureInfo.TextInfo;
